@@ -73,6 +73,17 @@
             transform: translate(0) !important;
         }
 
+        /* --- Footer Slide Up Animation --- */
+        .fade-slide-up {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .fade-slide-up.is-visible {
+            opacity: 1;
+            transform: translate(0);
+        }
+
         /* Subtly hide scrollbar but allow scrolling */
         ::-webkit-scrollbar {
             width: 8px;
@@ -346,7 +357,7 @@
     </section>
 
     <footer id="about" class="mt-20 bg-[#fafafa] dark:bg-[#0a0a0a] pt-32 pb-12 border-t border-gray-200 dark:border-[#222]">
-        <div class="max-w-[1325px] mx-auto px-6 md:px-12 flex flex-col items-center text-center mb-32">
+        <div class="fade-slide-up max-w-[1325px] mx-auto px-6 md:px-12 flex flex-col items-center text-center mb-32">
             <p class="text-xl md:text-2xl text-gray-500 dark:text-gray-400 mb-8">Thanks for sticking around.</p>
             <h2 class="text-[3.5rem] md:text-[6rem] font-medium tracking-tighter leading-none text-black dark:text-white mb-10 hover:scale-105 transition-transform duration-500 cursor-pointer">
                 Let's Connect
@@ -359,7 +370,7 @@
             </div>
         </div>
 
-        <div class="max-w-[1325px] mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 dark:text-gray-500 text-sm">
+        <div class="fade-slide-up max-w-[1325px] mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 dark:text-gray-500 text-sm" style="transition-delay: 150ms;">
             <div>Tawhid Zaman</div>
             <div>&copy; <span id="year"></span> All rights reserved.</div>
         </div>
@@ -432,8 +443,8 @@
                 });
             }, observerOptions);
 
-            // Target all elements with the device-animate class
-            document.querySelectorAll('.device-animate').forEach(el => {
+            // Target all elements with the device-animate or fade-slide-up class
+            document.querySelectorAll('.device-animate, .fade-slide-up').forEach(el => {
                 deviceObserver.observe(el);
             });
         });
